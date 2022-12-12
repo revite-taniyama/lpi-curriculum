@@ -1,0 +1,39 @@
+<%- include("./elements/global") %>
+<html>
+  <head>
+    <%- include('./elements/head') %>
+  </head>
+  <body>
+    <%- include("./elements/header") %>
+    <main>
+      <div class="main">
+        <h2>商品一覧</h2>
+        <div class="product-list">
+          <% products.forEach((product) => { %>
+            <div class="product-item">
+              <div class="product-name"><%= product.name %></div>
+              <div class="product-price">￥<%= formatter.format(product.price) %></div>
+              <div class="product-buy">
+                <form method="post" action="/buy/store">
+                  <%- token_field() %>
+                  <input type="hidden" value="<%= product.id %>" name="product_id">
+                  <div>
+                    個数：
+                    <select name="quantity">
+                      <% for(let i = 1; i <= 9; i++){ %>
+                        <option value="<%= i %>"><%= i %></option>
+                      <% } %>
+                    </select>
+                    <button type="submit">購入</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+    </main>
+    <%- include("./elements/footer") %>
+  </body>
+  <script src="/js/index.js"></script>
+</html>
