@@ -40,6 +40,7 @@ app.get("/", (req, res) => {
         });
     }).catch((error) => {
         console.log(error);
+        res.sendStatus(500);
     })
 });
 
@@ -53,6 +54,7 @@ app.post('/buy/store', (req, res) => {
         res.redirect("/buy/complete");
     }).catch((error) => {
         console.log(error);
+        res.sendStatus(500);
     });
 });
 
@@ -90,5 +92,6 @@ app.get('/mypage', (req, res) => {
         });
     }).catch(error => {
         console.log(error);
+        res.sendStatus(500);
     });
 });
